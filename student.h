@@ -13,6 +13,17 @@
 // 6.
 
 // ---------------------------------
+// Enumerations
+enum StudentDataOrder {
+    DATA_FIRST_NAME,
+    DATA_LAST_NAME,
+    DATA_GPA,
+    DATA_STATUS,
+    DATA_TOEFL
+};
+typedef enum StudentDataOrder StudentDataOrder;
+
+// ---------------------------------
 // Structures and Unions
 
 /**
