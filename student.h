@@ -33,7 +33,6 @@ struct DomesticStudent {
     char *firstName;
     char *lastName;
     float GPA;
-    char status;
 };
 
 /**
@@ -43,7 +42,6 @@ struct InternationalStudent {
     char *firstName;
     char *lastName;
     float GPA;
-    char status;
     int TOEFL;
 };
 
@@ -68,7 +66,7 @@ typedef union StudentInfo StudentInfo;
  */
 struct Student {
     int isInternational;
-    StudentInfo stuInfo;
+    StudentInfo info;
 };
 
 typedef struct Student Student;
@@ -83,6 +81,14 @@ typedef struct Student Student;
  * @return Student object data created from the data in the given line
  */
 Student getStudentFromLine(char *currLine);
+
+/**
+ * Function that checks if a student is international or domestic.
+ *
+ * @param studentInfo string containing information about the student's status
+ * @return 0 if student is domestic, != 0 if student is international
+ */
+int isStudentInternational(char *studentInfo);
 
 #define STUDENT_H
 
