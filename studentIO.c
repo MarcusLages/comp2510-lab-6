@@ -7,10 +7,8 @@ void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, char *option) {
     char *currLine = NULL;
 
     while(fgets(currLine, MAX_LINE_SIZE, ptrIn)) {
-        Student *currStudent = getStudentFromLine(currLine);
+        Student currStudent = getStudentFromLine(currLine);
         appendStudentTo(currStudent, ptrOut, option);
-
-        free(currStudent);
     }
 }
 

@@ -82,7 +82,7 @@ typedef struct Student Student;
  * @param currLine a string line
  * @return Student object data created from the data in the given line
  */
-Student* getStudentFromLine(char *currLine);
+Student getStudentFromLine(char *currLine);
 
 #define STUDENT_H
 

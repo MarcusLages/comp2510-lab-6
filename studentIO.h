@@ -32,7 +32,7 @@ void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, char *option);
  *               2 if only international students,
  *               3 if all students)
  */
-void appendStudentTo(Student *currStudent, FILE *ptrOut, char *option);
+void appendStudentTo(Student currStudent, FILE *ptrOut, char *option);
 
 /**
  * Function used to return a new and empty output file in append mode.
