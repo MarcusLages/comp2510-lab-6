@@ -86,9 +86,20 @@ Student getStudentFromLine(char *currLine);
  * Function that checks if a student is international or domestic.
  *
  * @param studentInfo string containing information about the student's status
- * @return 0 if student is domestic, != 0 if student is international
+ * @return 0 if student is domestic,
+ *         >= 0 if student is international
  */
 int isStudentInternational(char *studentInfo);
+
+/**
+ * Function that returns a student with blank/dummy information used for
+ * initialization.
+ *
+ * @attention isInternational, .info.international.GPA and .TOEFL fields are initialized as -1,
+ *
+ * @return blank student with dummy information
+ */
+Student getBlankStudent();
 
 #define STUDENT_H
 

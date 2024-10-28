@@ -52,3 +52,15 @@ int isStudentInternational(char *studentInfo) {
 
     return (studentInfo[0] == 'I' || studentInfo[0] == 'i');
 }
+
+Student getBlankStudent() {
+    return (Student) {
+        .isInternational = -1,
+        .info.international = (InternationalStudent) {
+            .firstName = NULL,
+            .lastName = NULL,
+            .GPA = -1,
+            .TOEFL = -1,
+        }
+    };
+}
