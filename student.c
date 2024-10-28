@@ -22,12 +22,15 @@ Student getStudentFromLine(char *currLine) {
             case DATA_FIRST_NAME:
                 student.info.domestic.firstName = studentInfo;
                 break;
-            case DATA_LAST_NAME: break;
+            case DATA_LAST_NAME:
                 student.info.domestic.lastName = studentInfo;
-            case DATA_GPA: break;
+                break;
+            case DATA_GPA:
                 student.info.domestic.GPA = atoi(studentInfo);
-            case DATA_STATUS: break;
+                break;
+            case DATA_STATUS:
                 student.isInternational = isStudentInternational(studentInfo);
+                break;
             case DATA_TOEFL:
                 student.info.international.TOEFL = atof(studentInfo);
                 break;

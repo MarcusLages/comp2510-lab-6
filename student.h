@@ -87,7 +87,7 @@ Student getStudentFromLine(char *currLine);
  *
  * @param studentInfo string containing information about the student's status
  * @return 0 if student is domestic,
- *         >= 0 if student is international
+ *         != 0 if student is international
  */
 int isStudentInternational(char *studentInfo);
 
