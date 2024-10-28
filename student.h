@@ -66,9 +66,10 @@ typedef struct Student Student;
 // Function prototypes
 
 /**
+ * Function used to get data from a string into a Student structure.
  *
  * @param currLine a string line
- * @return Student object represented by that line
+ * @return Student object data created from the data in the given line
  */
 Student* getStudentFromLine(char *currLine);
 
