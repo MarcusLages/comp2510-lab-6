@@ -35,6 +35,15 @@ void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, char *option);
 void appendStudentTo(Student *currStudent, FILE *ptrOut, char *option);
 
 /**
+ * Function used to return a new and empty output file in append mode.
+ *
+ * @param outputFile name of the output file
+ * @return pointer to a FILE buffer of the output file.
+ *         Returns null if there was an error cleaning or oppening the file.
+ */
+FILE* openOutputFile(char *outputFile);
+
+/**
  * Function used to close and deallocate memory for input and output files.
  *
  * @param ptrIn input file

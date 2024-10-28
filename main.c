@@ -24,7 +24,8 @@ int main(int argc, char **argv) {
 
     // Can we check if the file is already created so we don't append to an already created already?
     FILE *ptrIn = fopen(inputFile, "r");
-    FILE *ptrOut = fopen(outputFile, "w");
+    // FILE *ptrOut = fopen(outputFile, "w");
+    FILE *ptrOut = openOutputFile(outputFile);
 
     if(ptrIn == NULL) {
         perror("Input file not found.");
