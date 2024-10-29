@@ -92,6 +92,13 @@ Student getStudentFromLine(char *currLine);
 int isStudentInternational(const char *studentInfo);
 
 /**
+* Function that returns a string with information about the input student.
+*
+* @param student student structure that will have its
+*/
+char* getStudentInformation(const Student student);
+
+/**
  * Function that returns a student with blank/dummy information used for
  * initialization.
  *

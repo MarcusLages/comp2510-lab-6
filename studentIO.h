@@ -9,6 +9,13 @@
 #include <stdio.h>
 #include "student.h"
 
+enum StudentOutputOption {
+   OPTION_ONLY_DOMESTIC,
+   OPTION_ONLY_INTERNATIONAL,
+   OPTION_ALL
+};
+typedef enum StudentOutputOption StudentOutputOption;
+
 /**
  * Function used to filter an input file containing Student information and store it into
  * an output file.

@@ -12,9 +12,34 @@ void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, int option) {
     }
 }
 
-// TODO: Change option from string to int
 void appendStudentTo(Student currStudent, FILE *ptrOut, int option) {
-
+    switch(option) {
+        case OPTION_ONLY_DOMESTIC:
+            if(!currStudent.isInternational) {
+                char *info = getStudentInformation(currStudent);
+                fputs(info, ptrOut);
+                free(info);
+                info = NULL;
+            }
+            break;
+        case OPTION_ONLY_INTERNATIONAL:
+            if(currStudent.isInternational) {
+                char *info = getStudentInformation(currStudent);
+                fputs(info, ptrOut);
+                free(info);
+                info = NULL;
+            }
+            break;
+        case OPTION_ALL:
+            char *info = getStudentInformation(currStudent);
+            fputs(info, ptrOut);
+            free(info);
+            info = NULL;
+            break;
+        default:
+            perror("Error appending student to output file.");
+            exit(EXIT_FAILURE);
+    }
 }
 
 FILE* openOutputFile(char *outputFile) {

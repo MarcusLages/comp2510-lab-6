@@ -6,6 +6,7 @@
 
 #include "student.h"
 
+# define STUDENT_STRING_LIMIT 50
 
 Student getStudentFromLine(char *currLine) {
     Student student = getBlankStudent();
@@ -50,6 +51,28 @@ int isStudentInternational(const char *studentInfo) {
     }
 
     return (studentInfo[0] == 'I' || studentInfo[0] == 'i');
+}
+
+char* getStudentInformation(const Student student) {
+    char *info = (char *) malloc(STUDENT_STRING_LIMIT * sizeof(char) + 1);
+
+    if(student.isInternational) {
+        snprintf("%s %s %f %c", 100,
+            student.info.domestic.firstName,
+            student.info.domestic.lastName,
+            student.info.domestic.GPA,
+            'D',
+            student.info.international.TOEFL);
+    } else {
+        snprintf("%s %s %f %c %d", 100,
+            student.info.international.firstName,
+            student.info.international.lastName,
+            student.info.international.GPA,
+            'D',
+            student.info.international.TOEFL);
+    }
+
+    return info;
 }
 
 Student getBlankStudent() {
