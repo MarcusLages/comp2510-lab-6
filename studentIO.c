@@ -3,16 +3,17 @@
 
 #define ERROR_MSG_SIZE 25
 
-void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, char *option) {
+void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, int option) {
     char *currLine = NULL;
 
     while(fgets(currLine, MAX_LINE_SIZE, ptrIn)) {
-        Student currStudent = getStudentFromLine(currLine);
+        const Student currStudent = getStudentFromLine(currLine);
         appendStudentTo(currStudent, ptrOut, option);
     }
 }
 
-void appendStudentTo(Student *currStudent, FILE *ptrOut, char *option) {
+// TODO: Change option from string to int
+void appendStudentTo(Student currStudent, FILE *ptrOut, int option) {
 
 }
 

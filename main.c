@@ -18,9 +18,9 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
 
-    char *inputFile = argv[ARG_INPUT_FILE];
+    const char *inputFile = argv[ARG_INPUT_FILE];
     char *outputFile = argv[ARG_OUTPUT_FILE];
-    char *option = argv[ARG_OPTION];
+    const int option = atoi(argv[ARG_OPTION]);
 
     // Can we check if the file is already created so we don't append to an already created already?
     FILE *ptrIn = fopen(inputFile, "r");

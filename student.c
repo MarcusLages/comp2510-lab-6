@@ -8,17 +8,13 @@
 
 
 Student getStudentFromLine(char *currLine) {
-    char *studentInfo;
-    Student student;
-    int dataCounter;
-
-    student = getBlankStudent();
-    studentInfo = strtok(currLine, " ");
-    dataCounter = DATA_FIRST_NAME;
+    Student student = getBlankStudent();
+    char *studentInfo = strtok(currLine, " ");
+    int dataCounter = DATA_FIRST_NAME;
 
     while(studentInfo != NULL && dataCounter <= DATA_TOEFL) {
         // TODO: I might need to duplicate the strings instead of just assigning them.
-        switch(studentInfo) {
+        switch(dataCounter) {
             case DATA_FIRST_NAME:
                 student.info.domestic.firstName = studentInfo;
                 break;
@@ -47,7 +43,7 @@ Student getStudentFromLine(char *currLine) {
     return student;
 }
 
-int isStudentInternational(char *studentInfo) {
+int isStudentInternational(const char *studentInfo) {
     if(studentInfo == NULL || studentInfo[0] == '\0') {
         perror("Student info not found. Cannot check if student is international.\n");
         exit(EXIT_FAILURE);

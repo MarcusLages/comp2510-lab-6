@@ -89,7 +89,7 @@ Student getStudentFromLine(char *currLine);
  * @return 0 if student is domestic,
  *         != 0 if student is international
  */
-int isStudentInternational(char *studentInfo);
+int isStudentInternational(const char *studentInfo);
 
 /**
  * Function that returns a student with blank/dummy information used for
