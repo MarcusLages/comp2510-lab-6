@@ -56,19 +56,18 @@ int isStudentInternational(const char *studentInfo) {
 char* getStudentInformation(const Student student) {
     char *info = (char *) malloc(STUDENT_STRING_LIMIT * sizeof(char) + 1);
 
-    if(student.isInternational) {
-        snprintf("%s %s %f %c", 100,
+    if(!student.isInternational) {
+        sprintf(info, "%s %s %.2f %c\n",
             student.info.domestic.firstName,
             student.info.domestic.lastName,
             student.info.domestic.GPA,
-            'D',
-            student.info.international.TOEFL);
+            'D');
     } else {
-        snprintf("%s %s %f %c %d", 100,
+        sprintf(info, "%s %s %.2f %c %d\n",
             student.info.international.firstName,
             student.info.international.lastName,
             student.info.international.GPA,
-            'D',
+            'I',
             student.info.international.TOEFL);
     }
 

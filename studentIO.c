@@ -3,8 +3,8 @@
 
 #define ERROR_MSG_SIZE 25
 
-void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, int option) {
-    char *currLine = NULL;
+void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, const int option) {
+    char currLine[MAX_LINE_SIZE];
 
     while(fgets(currLine, MAX_LINE_SIZE, ptrIn)) {
         const Student currStudent = getStudentFromLine(currLine);
@@ -12,8 +12,8 @@ void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, int option) {
     }
 }
 
-void appendStudentTo(Student currStudent, FILE *ptrOut, int option) {
-    switch(option) {
+void appendStudentTo(const Student currStudent, FILE *ptrOut, const int option) {
+    switch(option - 1) {
         case OPTION_ONLY_DOMESTIC:
             if(!currStudent.isInternational) {
                 char *info = getStudentInformation(currStudent);
@@ -43,10 +43,7 @@ void appendStudentTo(Student currStudent, FILE *ptrOut, int option) {
 }
 
 FILE* openOutputFile(char *outputFile) {
-    if(remove(outputFile) != EXIT_SUCCESS) {
-        perror("Error cleaning output file.%n");
-        return NULL;
-    }
+    remove(outputFile);
 
     FILE *ptrOut = fopen(outputFile, "a");
 
