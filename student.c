@@ -13,8 +13,9 @@ Student getStudentFromLine(char *currLine) {
     char *studentInfo = strtok(currLine, " ");
     int dataCounter = DATA_FIRST_NAME;
 
+    // Goes through every tokenized word in the line and stores the data
+    // into its specific Student structure parameter
     while(studentInfo != NULL && dataCounter <= DATA_TOEFL) {
-        // TODO: I might need to duplicate the strings instead of just assigning them.
         switch(dataCounter) {
             case DATA_FIRST_NAME:
                 student.info.domestic.firstName = studentInfo;
@@ -34,7 +35,6 @@ Student getStudentFromLine(char *currLine) {
             default:
                 perror("Error on getting student info.");
                 exit(EXIT_FAILURE);
-                break;
         }
 
         studentInfo = strtok(NULL, " ");

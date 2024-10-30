@@ -22,9 +22,7 @@ int main(int argc, char **argv) {
     char *outputFile = argv[ARG_OUTPUT_FILE];
     const int option = atoi(argv[ARG_OPTION]);
 
-    // Can we check if the file is already created so we don't append to an already created already?
     FILE *ptrIn = fopen(inputFile, "r");
-    // FILE *ptrOut = fopen(outputFile, "w");
     FILE *ptrOut = openOutputFile(outputFile);
 
     if(ptrIn == NULL) {

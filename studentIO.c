@@ -13,6 +13,8 @@ void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, const int option) {
 }
 
 void appendStudentTo(const Student currStudent, FILE *ptrOut, const int option) {
+    // Checks if a student should be printed out depending on the option
+    // Appends the student information to the output file
     switch(option - 1) {
         case OPTION_ONLY_DOMESTIC:
             if(!currStudent.isInternational) {
@@ -43,6 +45,9 @@ void appendStudentTo(const Student currStudent, FILE *ptrOut, const int option) 
 }
 
 FILE* openOutputFile(char *outputFile) {
+    // Removes file so it can be written using append
+    // It is inefficient , but this avoids having to keep track of the
+    // data using an array
     remove(outputFile);
 
     FILE *ptrOut = fopen(outputFile, "a");
