@@ -3,14 +3,17 @@
 //
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "student.h"
 
-# define STUDENT_STRING_LIMIT 50
+#define STUDENT_STRING_LIMIT 50
+#define BASE_10 10
+#define TOKEN_DELIMITERS " \t\n\v\f\r"
 
 Student getStudentFromLine(char *currLine) {
     Student student = getBlankStudent();
-    char *studentInfo = strtok(currLine, " ");
+    char *studentInfo = strtok(currLine, TOKEN_DELIMITERS);
     int dataCounter = DATA_FIRST_NAME;
 
     // Goes through every tokenized word in the line and stores the data
@@ -24,13 +27,23 @@ Student getStudentFromLine(char *currLine) {
                 student.info.domestic.lastName = studentInfo;
                 break;
             case DATA_GPA:
-                student.info.domestic.GPA = atoi(studentInfo);
+                char *gpaError;
+                student.info.domestic.GPA = strtod(studentInfo, &gpaError);
+                if((*gpaError != '\n') && (*gpaError != '\0' || gpaError == studentInfo)) {
+                    student.info.domestic.GPA = STUDENT_ERROR_CODE;
+                    errno = 0;
+                }
                 break;
             case DATA_STATUS:
                 student.isInternational = isStudentInternational(studentInfo);
                 break;
             case DATA_TOEFL:
-                student.info.international.TOEFL = atof(studentInfo);
+                char *toeflError;
+                student.info.international.TOEFL = strtol(studentInfo, &toeflError, BASE_10);
+                if((*toeflError != '\n') && (*toeflError != '\0' || toeflError == studentInfo)) {
+                    student.info.international.TOEFL = STUDENT_ERROR_CODE;
+                    errno = 0;
+                }
                 break;
             default:
                 perror("Error on getting student info.");
@@ -50,7 +63,16 @@ int isStudentInternational(const char *studentInfo) {
         exit(EXIT_FAILURE);
     }
 
-    return (studentInfo[0] == 'I' || studentInfo[0] == 'i');
+    if (studentInfo[0] == 'I' || studentInfo[0] == 'i') {
+        return 1;
+    }
+
+    if(studentInfo[0] == 'D' || studentInfo[0] == 'd') {
+        return 0;
+    }
+
+    // If not I/i or D/d, then send error code.
+    return STUDENT_ERROR_CODE;
 }
 
 char* getStudentInformation(const Student student) {
@@ -76,12 +98,12 @@ char* getStudentInformation(const Student student) {
 
 Student getBlankStudent() {
     return (Student) {
-        .isInternational = -1,
+        .isInternational = STUDENT_ERROR_CODE,
         .info.international = (InternationalStudent) {
             .firstName = NULL,
             .lastName = NULL,
-            .GPA = -1,
-            .TOEFL = -1,
+            .GPA = STUDENT_ERROR_CODE,
+            .TOEFL = STUDENT_ERROR_CODE,
         }
     };
 }

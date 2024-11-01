@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include "studentIO.h"
 
-#define ERROR_MSG_SIZE 25
-
 void IOStudentsFiles(FILE *ptrIn, FILE *ptrOut, const int option) {
     char currLine[MAX_LINE_SIZE];
 
@@ -19,7 +17,9 @@ void appendStudentTo(const Student currStudent, FILE *ptrOut, const int option) 
         case OPTION_ONLY_DOMESTIC:
             if(!currStudent.isInternational) {
                 char *info = getStudentInformation(currStudent);
-                fputs(info, ptrOut);
+                if(!checkErrors(currStudent, ptrOut)) {
+                    fputs(info, ptrOut);
+                }
                 free(info);
                 info = NULL;
             }
@@ -27,14 +27,18 @@ void appendStudentTo(const Student currStudent, FILE *ptrOut, const int option) 
         case OPTION_ONLY_INTERNATIONAL:
             if(currStudent.isInternational) {
                 char *info = getStudentInformation(currStudent);
-                fputs(info, ptrOut);
+                if(!checkErrors(currStudent, ptrOut)) {
+                    fputs(info, ptrOut);
+                }
                 free(info);
                 info = NULL;
             }
             break;
         case OPTION_ALL:
             char *info = getStudentInformation(currStudent);
-            fputs(info, ptrOut);
+            if(!checkErrors(currStudent, ptrOut)) {
+                fputs(info, ptrOut);
+            }
             free(info);
             info = NULL;
             break;
@@ -53,6 +57,27 @@ FILE* openOutputFile(char *outputFile) {
     FILE *ptrOut = fopen(outputFile, "a");
 
     return ptrOut;
+}
+
+int checkErrors(const Student student, FILE *errorOutput) {
+    if(student.isInternational == STUDENT_ERROR_CODE) {
+        fputs("ERROR: Invalid status.\n", errorOutput);
+        exit(EXIT_FAILURE);
+        // return 1;
+    }
+
+    if(student.info.domestic.GPA <= STUDENT_ERROR_CODE) {
+        fputs("ERROR: Invalid GPA.\n", errorOutput);
+        exit(EXIT_FAILURE);
+        // return 1;
+    }
+    if(student.info.international.TOEFL == STUDENT_ERROR_CODE) {
+        fputs("ERROR: Invalid TOEFL grade\n", errorOutput);
+        exit(EXIT_FAILURE);
+        // return 1;
+    }
+
+    return 0;
 }
 
 void closeFiles(FILE *ptrIn, FILE *ptrOut) {

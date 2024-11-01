@@ -2,15 +2,8 @@
 // Created by marcu on 17/10/2024.
 //
 #ifndef STUDENT_H
-#include <stdio.h>
 
-// STEPS
-// 1. STRUCTURES
-// 2. parsesStudentInfo / processStudent
-// 3. Read each line of input.txt
-// 4. statements to filter and select options 1-3
-// 5. read from file and call function read/write
-// 6.
+#define STUDENT_ERROR_CODE -1
 
 // ---------------------------------
 // Enumerations

@@ -51,6 +51,16 @@ void appendStudentTo(Student currStudent, FILE *ptrOut, int option);
 FILE* openOutputFile(char *outputFile);
 
 /**
+ * Check for errors in the Student structure and prints to the file the error
+ * accordingly.
+ *
+ * @param student student to check for errors
+ * @param errorOutput buffer for outputting errors
+ * @return 1 if there's any errors
+ */
+int checkErrors(const Student student, FILE *errorOutput);
+
+/**
  * Function used to close and deallocate memory for input and output files.
  *
  * @param ptrIn input file
